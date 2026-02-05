@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ITINERARY_DATA, FLIGHTS, HOTELS, getTypeIcon } from './constants';
 import { Activity, DayItinerary, ActivityType } from './types';
-import { Snowflake, Calendar, MapPin, Plane, ChevronRight, Clock } from 'lucide-react';
+import { Snowflake, Home, MapPin, Plane, ChevronRight, Clock } from 'lucide-react';
 
 const DayCard: React.FC<{ day: DayItinerary, isActive: boolean }> = ({ day, isActive }) => {
   return (
@@ -311,15 +311,15 @@ const App: React.FC = () => {
           <div>
             <h1 className="text-xl font-bold text-slate-900 flex items-center">
               <Snowflake className="w-5 h-5 text-cyan-500 mr-2" />
-              2026 北海道・東京
+              202602 今年「馬」上去北海道・東京吧
             </h1>
-            <p className="text-xs text-slate-500 mt-0.5">2/8 - 2/18 (11 Days)</p>
+            <p className="text-xs text-slate-500 mt-0.5">2/8 - 2/14 北海道 | 2/15 - 2/18 東京</p>
           </div>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors"
           >
-            <Calendar className="w-5 h-5 text-slate-600" />
+            <Home className="w-5 h-5 text-slate-600" />
           </button>
         </div>
 
