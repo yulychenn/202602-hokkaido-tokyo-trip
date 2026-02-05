@@ -311,7 +311,7 @@ const App: React.FC = () => {
           <div>
             <h1 className="text-xl font-bold text-slate-900 flex items-center">
               <Snowflake className="w-5 h-5 text-cyan-500 mr-2" />
-              202602 今年「馬」上去北海道・東京吧
+              202602「馬」上去北海道・東京
             </h1>
             <p className="text-xs text-slate-500 mt-0.5">2/8 - 2/14 北海道 | 2/15 - 2/18 東京</p>
           </div>
@@ -370,7 +370,7 @@ const App: React.FC = () => {
 
       <main className="w-full px-4 pt-6 space-y-8 max-w-2xl mx-auto">
         {/* 行程資訊 */}
-        <section id="info-section" className="space-y-6" style={{ scrollMarginTop: '130px' }}>
+        <section id="info-section" className="space-y-6" style={{ scrollMarginTop: '160px' }}>
           {/* 航班資訊 */}
           <div>
             <h2 className="text-lg font-bold text-slate-800 px-1 mb-3">✈️ 航班資訊</h2>
@@ -416,7 +416,7 @@ const App: React.FC = () => {
         <section className="space-y-4">
           <h2 className="text-lg font-bold text-slate-800 px-1 mb-4">每日行程</h2>
           {ITINERARY_DATA.map((day) => (
-            <div id={`day-${day.day}`} key={day.day} style={{ scrollMarginTop: '130px' }}>
+            <div id={`day-${day.day}`} key={day.day} style={{ scrollMarginTop: '160px' }}>
               <DayCard
                 day={day}
                 isActive={activeSection === `day-${day.day}`}
