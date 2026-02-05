@@ -20,20 +20,24 @@ export const HOTELS: Record<string, HotelInfo> = {
   OTARU: {
     name: "Sonia 小樽酒店 (HOTEL SONIA Otaru)",
     address: "1-4-20, Ironai, Otaru, 047-0031",
-    phone: "+81-13-4232600"
+    phone: "+81-13-4232600",
+    link: "https://maps.app.goo.gl/baPAEHTDEix1sCGD9"
   },
   SAPPORO: {
     name: "札幌大通威斯特飯店 (Hotel Vista Sapporo Odori)",
     address: "5 Chome-16 Minami 3 Jonishi, 中央區, Sapporo",
-    phone: "+81-11-2333151"
+    phone: "+81-11-2333151",
+    link: "https://maps.app.goo.gl/kR4GeKo4ckAHADTT7"
   },
   UENO: {
     name: "上野 Sardonyx 飯店 (Hotel Sardonyx Ueno)",
     address: "6 Chome-6-7 Ueno, Taito City, Tokyo",
+    link: "https://maps.app.goo.gl/x6mp3C1Drkr6GqN79"
   },
   SHINJUKU: {
     name: "VIA INN SHINJUKU",
     address: "5-11-16 Shinjuku, Shinjuku-ku, Tokyo",
+    link: "https://maps.app.goo.gl/H2VDbqWqLRxMsGvW7"
   }
 };
 
@@ -74,21 +78,33 @@ export const ITINERARY_DATA: DayItinerary[] = [
       },
       {
         time: "20:00",
-        title: "抵達小樽",
-        type: ActivityType.TRANSPORT,
-        description: "Check-in 飯店",
-      },
-      {
-        time: "20:30",
         title: "Donki 驚安殿堂",
         type: ActivityType.SHOPPING,
         description: "先衝去買雪靴",
+        options: [
+          {
+            name: "Donki 驚安殿堂",
+            link: "https://maps.app.goo.gl/KxxXiBGZV6ipJYcq8"
+          }
+        ]
+      },
+      {
+        time: "21:00",
+        title: "小樽飯店 Check-in",
+        type: ActivityType.HOTEL,
+        description: "先去放行李再吃晚餐",
+        options: [
+          {
+            name: "Sonia 小樽酒店",
+            link: "https://maps.app.goo.gl/baPAEHTDEix1sCGD9"
+          }
+        ]
       },
       {
         time: "22:00",
         title: "屋台村紅磚橫丁",
         type: ActivityType.FOOD,
-        description: "晚餐",
+        description: "晚餐"
       }
     ]
   },
@@ -105,25 +121,53 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "友和のパン (友和麵包)",
         type: ActivityType.FOOD,
         tags: ["冰狗"],
-        description: "早餐 (營業時間 7:00-21:00)",
+        description: "早餐",
+        options: [
+          {
+            name: "友和のパン (友和麵包)",
+            hours: "7:00-21:00",
+            tags: ["冰狗"],
+            link: "https://maps.app.goo.gl/1ceBj3ARi7JuS38Z8"
+          }
+        ]
       },
       {
         time: "上午",
         title: "堺町通商店街",
         type: ActivityType.SHOPPING,
         tags: ["北一硝子", "音樂盒堂"],
-        description: "逛街、買各種玻璃工藝品",
+        description: "逛街、買各種玻璃工藝品"
       },
       {
         time: "11:00",
         title: "南小樽午餐 (選擇)",
         type: ActivityType.FOOD,
-        tags: ["海鮮丼", "壽司"],
-        details: [
-          "澤崎水産 (11:00-19:00)",
-          "Otaru Poseidon (11:00-18:00)",
-          "八田壽司 (11:00-14:00 / 17:00-20:00)",
-          "政寿司 本店 (11:00-15:00 / 17:00-21:00)"
+        description: "運河走到南小樽之間吃飯",
+        options: [
+          {
+            name: "海鮮食堂 澤崎水産",
+            hours: "11:00-19:00",
+            tags: ["海鮮丼"],
+            link: "https://maps.app.goo.gl/spTqwxwPg6q22ZscA"
+          },
+          {
+            name: "Otaru Poseidon Main Shop",
+            hours: "11:00-18:00",
+            tags: ["海鮮丼"],
+            link: "https://maps.app.goo.gl/RKDXFZ2u4xeVK2WeA"
+          },
+          {
+            name: "八田壽司",
+            hours: "11:00-14:00 / 17:00-20:00",
+            tags: ["壽司"],
+            link: "https://maps.app.goo.gl/MNDy8ggkEuP5mQB3A"
+          },
+          {
+            name: "おたる政寿司 本店",
+            hours: "11:00-15:00 / 17:00-21:00",
+            tags: ["壽司"],
+            link: "https://maps.app.goo.gl/kv6B2cNBFMnUnZ539"
+          }
         ]
       },
       {
@@ -143,7 +187,14 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "若鶏時代 なると 本店",
         type: ActivityType.FOOD,
         tags: ["定食", "炸雞"],
-        description: "11:00-21:00",
+        options: [
+          {
+            name: "若鶏時代 なると 本店",
+            hours: "11:00-21:00",
+            tags: ["定食", "炸雞"],
+            link: "https://maps.app.goo.gl/XGueB3yLfApxYqvSA"
+          }
+        ]
       }
     ]
   },
@@ -160,7 +211,15 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "三角市場",
         type: ActivityType.FOOD,
         tags: ["滝波食堂"],
-        description: "超猛海鮮丼當早餐 (08:00-17:00)",
+        description: "超猛海鮮丼當早餐",
+        options: [
+          {
+            name: "小樽 北のどんぶり屋 滝波食堂",
+            hours: "08:00-17:00",
+            tags: ["海鮮丼"],
+            link: "https://maps.app.goo.gl/zWVLMV3ZadkZyXhF9"
+          }
+        ]
       },
       {
         time: "09:30",
@@ -178,10 +237,25 @@ export const ITINERARY_DATA: DayItinerary[] = [
         time: "午餐",
         title: "湯咖哩 (選擇)",
         type: ActivityType.FOOD,
-        details: [
-          "Century soup curry (11:00-21:30)",
-          "COTARU 本店 (10:00-19:30)",
-          "Soup Curry Daruo (11:30-14:30 / 17:00-20:30)"
+        options: [
+          {
+            name: "Century soup curry & Indian Nepalese curry",
+            hours: "11:00-21:30",
+            tags: ["湯咖哩"],
+            link: "https://maps.app.goo.gl/wuRxNoPXF1fsix7E7"
+          },
+          {
+            name: "COTARU 本店",
+            hours: "10:00-19:30",
+            tags: ["湯咖哩"],
+            link: "https://maps.app.goo.gl/zGKTbeUrFnYTaJwWA"
+          },
+          {
+            name: "Soup Curry Daruo",
+            hours: "11:30-14:30 / 17:00-20:30",
+            tags: ["湯咖哩"],
+            link: "https://maps.app.goo.gl/YGNHP1z9ymgVTFLn7"
+          }
         ]
       },
       {
@@ -199,8 +273,15 @@ export const ITINERARY_DATA: DayItinerary[] = [
         time: "晚餐",
         title: "小樽倉庫No.1 啤酒釀造所",
         type: ActivityType.FOOD,
-        tags: ["德式香腸", "烤豬腳"],
-        description: "11:00-22:00",
+        tags: ["德式香腸拼盤", "烤豬腳"],
+        options: [
+          {
+            name: "小樽倉庫No.1 啤酒釀造所",
+            hours: "11:00-22:00",
+            tags: ["德式香腸拼盤", "烤豬腳"],
+            link: "https://maps.app.goo.gl/vZtgmecgekXJTuwg8"
+          }
+        ]
       }
     ]
   },
@@ -229,7 +310,15 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "The soft cream house",
         type: ActivityType.FOOD,
         tags: ["冰淇淋"],
-        description: "11:00-21:00",
+        description: "不一定現在要吃！但要記得吃！",
+        options: [
+          {
+            name: "The soft cream house",
+            hours: "11:00-21:00",
+            tags: ["冰淇淋"],
+            link: "https://maps.app.goo.gl/iAEazDNzqPTw3MqD8"
+          }
+        ]
       },
       {
         time: "晚上",
@@ -241,9 +330,19 @@ export const ITINERARY_DATA: DayItinerary[] = [
         time: "晚餐",
         title: "成吉思汗烤肉 (選擇)",
         type: ActivityType.FOOD,
-        details: [
-          "成吉思汗 達摩 本店 (17:00-05:00)",
-          "成吉思汗 薄野 4.4店 (11:30-23:00)"
+        options: [
+          {
+            name: "成吉思汗 達摩 本店",
+            hours: "17:00-05:00",
+            tags: ["成吉思汗烤肉"],
+            link: "https://maps.app.goo.gl/YKEA1PPRmDPXjvXa9"
+          },
+          {
+            name: "成吉思汗 薄野 4.4店",
+            hours: "11:30-23:00",
+            tags: ["成吉思汗烤肉"],
+            link: "https://maps.app.goo.gl/Ft2aGDuk5bkw1tv38"
+          }
         ]
       }
     ]
@@ -261,13 +360,20 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "二條市場 大磯",
         type: ActivityType.FOOD,
         tags: ["海鮮丼", "烤魚"],
-        description: "07:30-15:00 / 17:00-20:30",
+        options: [
+          {
+            name: "二條市場 大磯",
+            hours: "07:30-15:00 / 17:00-20:30",
+            tags: ["海鮮丼", "烤魚"],
+            link: "https://maps.app.goo.gl/tfKxdaT3fTFgb5JRA"
+          }
+        ]
       },
       {
         time: "上午",
         title: "北海道神宮",
         type: ActivityType.SIGHTSEEING,
-        description: "散步",
+        description: "散步"
       },
       {
         time: "下午",
@@ -280,28 +386,51 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "SOUP CURRY KING (要排隊)",
         type: ActivityType.FOOD,
         tags: ["湯咖哩"],
-        description: "11:30–15:30 / 17:30–21:30",
-        details: [
-          "午餐：11:30-15:30 中午 or 狸小路逛街時先吃",
-          "晚餐：17:30 排隊（建議 D4 吃）",
-          "備案：Suage+ Soup Curry (11:00-20:00)"
+        description: "午餐：11:30-15:30 中午 or 狸小路逛街時先吃 | 晚餐：17:30 排隊（建議 D4 吃）",
+        options: [
+          {
+            name: "SOUP CURRY KING",
+            hours: "11:30–15:30 / 17:30–21:30",
+            tags: ["湯咖哩"],
+            link: "https://maps.app.goo.gl/jSpsxmTvGFdigJqw6"
+          },
+          {
+            name: "Suage+ Soup Curry",
+            hours: "11:00-20:00",
+            tags: ["湯咖哩"],
+            link: "https://maps.app.goo.gl/3JGBUurXCRZHLTkx9"
+          }
         ]
       },
       {
         time: "晚上",
         title: "札幌電視塔",
         type: ActivityType.SIGHTSEEING,
-        description: "看大通公園全景",
+        description: "看大通公園全景"
       },
       {
         time: "宵夜",
         title: "宵夜選擇",
         type: ActivityType.FOOD,
-        tags: ["拉麵", "聖代"],
-        details: [
-          "札幌黑拉麵 (22:00-06:00)",
-          "Parfait Shop NANAKAMADOU (18:00-00:00)",
-          "Parfaiteria Mill (18:00-00:00)"
+        options: [
+          {
+            name: "札幌黑拉麵",
+            hours: "22:00-06:00",
+            tags: ["拉麵"],
+            link: "https://maps.app.goo.gl/5asD8vgJg6ea6wNa6"
+          },
+          {
+            name: "Parfait Shop NANAKAMADOU",
+            hours: "18:00-00:00",
+            tags: ["聖代"],
+            link: "https://maps.app.goo.gl/KjGPKBdheFZeCgbs5"
+          },
+          {
+            name: "Night parfait specialty shop Parfaiteria Mill",
+            hours: "18:00-00:00",
+            tags: ["聖代"],
+            link: "https://maps.app.goo.gl/HVNRbVrEANQCBr3h9"
+          }
         ]
       }
     ]
@@ -319,6 +448,12 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "札幌東急 REI 飯店集合",
         type: ActivityType.NOTE,
         description: "KKday 北海道一日遊集合點",
+        options: [
+          {
+            name: "札幌東急 REI 飯店",
+            link: "https://maps.app.goo.gl/iZXCK1NBnM6MkZ447"
+          }
+        ]
       },
       {
         time: "全日",
@@ -337,7 +472,14 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "炭火焼鳥 大",
         type: ActivityType.FOOD,
         tags: ["串燒"],
-        description: "17:00–23:00",
+        options: [
+          {
+            name: "炭火焼鳥 大",
+            hours: "17:00–23:00",
+            tags: ["串燒"],
+            link: "https://maps.app.goo.gl/mP41U67XfWpwFF7Q7"
+          }
+        ]
       }
     ]
   },
@@ -358,7 +500,15 @@ export const ITINERARY_DATA: DayItinerary[] = [
         time: "午餐",
         title: "Picante Soup curry",
         type: ActivityType.FOOD,
-        description: "11:30–22:00",
+        tags: ["湯咖哩"],
+        options: [
+          {
+            name: "Picante Soup curry",
+            hours: "11:30–22:00",
+            tags: ["湯咖哩"],
+            link: "https://maps.app.goo.gl/Zx8YFbKD3SFMqC3WA"
+          }
+        ]
       },
       {
         time: "12:00",
@@ -383,6 +533,12 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "前往上野",
         type: ActivityType.TRANSPORT,
         description: "東京單軌電車 ＋ 山手線 (約30-35分)",
+        options: [
+          {
+            name: "上野Sardonyx飯店",
+            link: "https://maps.app.goo.gl/x6mp3C1Drkr6GqN79"
+          }
+        ]
       },
       {
         time: "晚餐",
@@ -416,7 +572,7 @@ export const ITINERARY_DATA: DayItinerary[] = [
         time: "11:00",
         title: "叙叙苑 上野丸井店 (預約)",
         type: ActivityType.FOOD,
-        description: "午餐",
+        description: "午餐"
       },
       {
         time: "下午",
@@ -432,21 +588,40 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "新宿 Check-in",
         type: ActivityType.HOTEL,
         description: "VIA INN SHINJUKU",
+        options: [
+          {
+            name: "VIA INN SHINJUKU",
+            link: "https://maps.app.goo.gl/H2VDbqWqLRxMsGvW7"
+          }
+        ]
       },
       {
         time: "晚上",
         title: "新宿 吉依卡哇",
         type: ActivityType.SHOPPING,
-        description: "20:30 關門",
+        description: "20:30 關門"
       },
       {
         time: "晚餐",
         title: "晚餐選擇",
         type: ActivityType.FOOD,
-        details: [
-          "AFURI 拉麵 (新宿住友大廈 11:00-20:00)",
-          "壽司郎 (新宿三丁目店 11:00-23:00)",
-          "藏壽司 (西新宿店 11:00-20:00)"
+        options: [
+          {
+            name: "AFURI 新宿住友大廈",
+            hours: "11:00-20:00",
+            tags: ["拉麵"],
+            link: "https://maps.app.goo.gl/1fsYB1bvoiWKnzc19"
+          },
+          {
+            name: "壽司郎 新宿三丁目店",
+            hours: "11:00-23:00",
+            tags: ["壽司"]
+          },
+          {
+            name: "藏壽司 西新宿店",
+            hours: "11:00-20:00",
+            tags: ["壽司"]
+          }
         ]
       }
     ]
@@ -476,7 +651,14 @@ export const ITINERARY_DATA: DayItinerary[] = [
         title: "EDW yellow Shibuya",
         type: ActivityType.FOOD,
         tags: ["漢堡排", "蛋包飯"],
-        description: "11:00–21:00",
+        options: [
+          {
+            name: "EDW yellow Shibuya",
+            hours: "11:00–21:00",
+            tags: ["漢堡排", "蛋包飯"],
+            link: "https://maps.app.goo.gl/fu5fkqQdiRNkVGDB9"
+          }
+        ]
       }
     ]
   },

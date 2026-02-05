@@ -8,6 +8,13 @@ export enum ActivityType {
   NOTE = 'note'
 }
 
+export interface ActivityOption {
+  name: string;
+  hours?: string;
+  link?: string;
+  tags?: string[];
+}
+
 export interface Activity {
   time?: string;
   title: string;
@@ -17,6 +24,8 @@ export interface Activity {
   location?: string;
   details?: string[]; // For specific instructions like bus numbers or menu items
   image?: string; // Optional image URL for visual reference
+  link?: string; // Google Maps or official website link
+  options?: ActivityOption[]; // Multiple restaurant/place options
 }
 
 export interface DayItinerary {
@@ -42,4 +51,5 @@ export interface HotelInfo {
   address: string;
   phone?: string;
   checkIn?: string;
+  link?: string;
 }
