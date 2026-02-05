@@ -29,14 +29,12 @@ jobs:
           cache-dependency-path: '202602-hokkaido-&-tokyo-trip/package-lock.json'
 
       - name: Install dependencies
-        run: |
-          cd 202602-hokkaido-&-tokyo-trip
-          npm ci
+        working-directory: '202602-hokkaido-&-tokyo-trip'
+        run: npm ci
 
       - name: Build
-        run: |
-          cd 202602-hokkaido-&-tokyo-trip
-          npm run build
+        working-directory: '202602-hokkaido-&-tokyo-trip'
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
