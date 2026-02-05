@@ -180,6 +180,20 @@ const FlightCard: React.FC<{ info: typeof FLIGHTS[0] }> = ({ info }) => (
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('flights');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+  const isClickScrolling = useRef<boolean>(false); // 點擊滾動時暫停 Observer
+
+  // 當 activeSection 改變時，將對應按鈕捲動到可視範圍
+  useEffect(() => {
+    const button = buttonRefs.current.get(activeSection);
+    if (button) {
+      button.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  }, [activeSection]);
 
   // Intersection Observer 監聯滾動位置
   useEffect(() => {
@@ -190,6 +204,9 @@ const App: React.FC = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        // 點擊滾動時不更新 activeSection
+        if (isClickScrolling.current) return;
+
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const sectionInfo = sections.find(s => s.id === entry.target.id);
@@ -271,11 +288,19 @@ const App: React.FC = () => {
   }, []);
 
   const handleSectionClick = (sectionName: string, elementId: string) => {
+    // 設置 flag 暫停 Observer
+    isClickScrolling.current = true;
     setActiveSection(sectionName);
+
     const element = document.getElementById(elementId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    // 滾動完成後恢復 Observer（約 600ms 足夠平滑滾動完成）
+    setTimeout(() => {
+      isClickScrolling.current = false;
+    }, 600);
   };
 
   return (
@@ -310,6 +335,7 @@ const App: React.FC = () => {
           <div className="flex gap-2 min-w-max">
             {/* 快捷跳轉按鈕 */}
             <button
+              ref={(el) => { if (el) buttonRefs.current.set('info', el); }}
               onClick={() => handleSectionClick('info', 'info-section')}
               className={`flex-shrink-0 px-3 py-2 rounded-lg text-[10px] font-medium transition-all text-center leading-tight ${activeSection === 'info'
                 ? 'bg-blue-600 text-white shadow-md'
@@ -322,6 +348,7 @@ const App: React.FC = () => {
             {ITINERARY_DATA.map((day) => (
               <button
                 key={day.day}
+                ref={(el) => { if (el) buttonRefs.current.set(`day-${day.day}`, el); }}
                 onClick={() => handleSectionClick(`day-${day.day}`, `day-${day.day}`)}
                 className={`flex-shrink-0 px-3 py-2 rounded-lg text-[10px] font-medium transition-all text-center leading-tight ${activeSection === `day-${day.day}`
                   ? 'bg-slate-900 text-white shadow-md'
